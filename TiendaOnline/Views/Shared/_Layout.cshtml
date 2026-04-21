@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tienda Online</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <!-- 🔝 NAVBAR -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container">
+
+            <!-- LOGO -->
+            @Html.ActionLink("🛍️ Tienda Online", "Index", "Home", null, new { @class = "navbar-brand" })
+
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+
+                <ul class="navbar-nav flex-grow-1">
+
+                    <!-- 👀 TODOS -->
+                    <li class="nav-item">
+                        @Html.ActionLink("Catálogo de Productos", "Index", "Productos", null, new { @class = "nav-link" })
+                    </li>
+
+                    <!-- 👤 USUARIO -->
+                    @if (User.IsInRole("Usuario"))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Mis Compras", "MisCompras", "Productos", null, new { @class = "nav-link" })
+                        </li>
+                    }
+
+                   
+
+                </ul>
+
+                <!-- 🔑 LOGIN -->
+                <ul class="navbar-nav">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
+                                    Cerrar sesión
+                                </a>
+                            }
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Iniciar sesión", "Login", "Account", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Registrarse", "Register", "Account", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- 📦 CONTENIDO -->
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tienda Online</p>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿@model List<TiendaOnline.Models.CarritoItem>
+
+@{
+    ViewBag.Title = "Carrito de Compras";
+    var colones = new System.Globalization.CultureInfo("es-CR");
+}
+
+<h2>🛒 Carrito de Compras</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Tu carrito está vacío
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+
+                    <td>@item.Precio.ToString("C", colones)</td>
+
+                    <td>@item.Cantidad</td>
+
+                    <td>@((item.Precio * item.Cantidad).ToString("C", colones))</td>
+
+                    <td>
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.ProductoId }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-end">
+        <h4>
+            <strong>Total: </strong>
+            @Model.Sum(x => x.Precio * x.Cantidad).ToString("C", colones)
+        </h4>
+    </div>
+
+    <div class="mt-3">
+        @Html.ActionLink("✔ Confirmar Compra", "Confirmar", null, new { @class = "btn btn-success" })
+        @Html.ActionLink("🗑 Vaciar Carrito", "Vaciar", null, new { @class = "btn btn-warning" })
+    </div>
+}

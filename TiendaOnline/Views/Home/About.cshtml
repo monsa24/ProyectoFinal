@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "Catálogo";
+}
+Tenemos que meter estos estilos en una carpeta de styles
+<style>
+    .catalogo-container {
+        padding: 30px;
+        background-color: #f8f9fa;
+    }
+
+    .catalogo-title {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .producto-card {
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+        background: white;
+        padding: 15px;
+        text-align: center;
+        height: 100%;
+    }
+
+        .producto-card:hover {
+            transform: scale(1.03);
+        }
+
+    .producto-img {
+        height: 180px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
+
+    .precio {
+        font-size: 18px;
+        font-weight: bold;
+        color: #27ae60;
+    }
+
+    .btn-comprar {
+        background-color: #3498db;
+        color: white;
+        border-radius: 8px;
+        padding: 8px 15px;
+        text-decoration: none;
+    }
+
+        .btn-comprar:hover {
+            background-color: #2980b9;
+            color: white;
+        }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+</style>
+
+<main class="catalogo-container">
+
+    <h2 class="catalogo-title">Catálogo de Productos 📚</h2>
+
+    <div class="grid">
+
+        <!-- Producto 1 -->
+        <div class="producto-card">
+            <img class="producto-img" src="https://tiendauniversal.com/cdn/shop/files/7441146312733_1_3789cc2c-5072-46d2-a540-d8f6f88c14e2_600x.jpg?v=1774257640" />
+            <h4>Cuaderno Universitario</h4>
+            <p>200 páginas rayadas</p>
+            <p class="precio">₡2,500</p>
+            <a href="#" class="btn-comprar">Agregar</a>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="producto-card">
+            <img class="producto-img" src="https://cdnx.jumpseller.com/impresion-cl/image/17747862/resize/540/540?1654008321" />
+            <h4>Separador de Libros</h4>
+            <p>Bellos separadores de libros, con frases inspiradoras</p>
+            <p class="precio">₡13,500</p>
+            <a href="#" class="btn-comprar">Agregar</a>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="producto-card">
+            <img class="producto-img" src="https://res.cloudinary.com/bloomsbury-atlas/image/upload/w_360,c_scale,dpr_1.5/jackets/9781408855652.jpg" />
+            <h4>Libro de Harry Potter</h4>
+            <p>Libro de la saga Harry Potter</p>
+            <p class="precio">₡16,200</p>
+            <a href="#" class="btn-comprar">Agregar</a>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="producto-card">
+            <img class="producto-img" src="https://walmartcr.vtexassets.com/arquivos/ids/930828/9078_01.jpg?v=638834040100700000" />
+            <h4>Resaltadores</h4>
+            <p>Colores surtidos</p>
+            <p class="precio">₡2,100</p>
+            <a href="#" class="btn-comprar">Agregar</a>
+        </div>
+
+        <!-- Producto 5 -->
+        <div class="producto-card">
+            <img class="producto-img" src="https://ar-todomoda.bluestargroup-cdn.com/media/catalog/product/8/2/82853501_0_1_20250915181325.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=841&width=657&canvas=657:841" />
+            <h4>Agenda 2026</h4>
+            <p>Organiza tu año</p>
+            <p class="precio">₡4,500</p>
+            <a href="#" class="btn-comprar">Agregar</a>
+        </div>
+
+        <!-- Producto 6 -->
+        <div class="producto-card">
+            <img class="producto-img" src="https://staging.arteacr.com/wp-content/uploads/2020/05/21090-Borrador-526-50.jpg" />
+            <h4>Borrador</h4>
+            <p>Borrado suave</p>
+            <p class="precio">₡500</p>
+            <a href="#" class="btn-comprar">Agregar</a>
+        </div>
+
+    </div>
+
+</main>

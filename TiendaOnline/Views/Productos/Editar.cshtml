@@ -1,0 +1,48 @@
+﻿@model TiendaOnline.Models.ProductoModels
+@{ ViewData["Title"] = "Editar Producto"; }
+
+<div class="container" style="max-width:600px;margin-top:2rem;">
+    <div class="card shadow-sm p-4" style="border-radius:12px;">
+        <h4 style="font-weight:700;color:#2c3e50;">✏️ Editar Producto</h4>
+        <hr />
+        @using (Html.BeginForm("Editar", "Productos", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Codigo)
+                @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Codigo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Nombre)
+                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Nombre, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Precio)
+                @Html.TextBoxFor(m => m.Precio, new { @class = "form-control", type = "number", step = "0.01" })
+                @Html.ValidationMessageFor(m => m.Precio, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Disponibilidad)
+                @Html.TextBoxFor(m => m.Disponibilidad, new { @class = "form-control", type = "number" })
+                @Html.ValidationMessageFor(m => m.Disponibilidad, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Estado)
+                @Html.EnumDropDownListFor(m => m.Estado, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Resenia)
+                @Html.TextAreaFor(m => m.Resenia, new { @class = "form-control", rows = 3 })
+                @Html.ValidationMessageFor(m => m.Resenia, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-block" style="font-weight:700;">💾 Actualizar</button>
+            <a href="@Url.Action("Administrar")" class="btn btn-outline-secondary btn-block mt-2">Cancelar</a>
+        }
+    </div>
+</div>

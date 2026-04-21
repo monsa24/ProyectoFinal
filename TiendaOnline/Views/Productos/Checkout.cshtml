@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TiendaOnline.Models.ItemCarrito>
+@{
+    ViewData["Title"] = "Finalizar Compra";
+    var items = Model.ToList();
+}
+
+<div style="background:linear-gradient(135deg,#2c3e50,#3498db);color:#fff;padding:2rem;border-radius:0 0 12px 12px;margin-bottom:2rem;">
+    <h2>💳 Finalizar Compra</h2>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            @using (Html.BeginForm("ConfirmarCompra", "Productos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="card shadow-sm p-4 mb-3" style="border-radius:12px;">
+                    <h5 style="font-weight:700;color:#2c3e50;">📦 Dirección de entrega</h5>
+                    <hr />
+                    <div class="form-group">
+                        <label>Dirección completa</label>
+                        <input type="text" name="direccion" class="form-control"
+                               placeholder="Ej: San José, 200m norte del parque" required />
+                    </div>
+                </div>
+
+                <div class="card shadow-sm p-4 mb-3" style="border-radius:12px;">
+                    <h5 style="font-weight:700;color:#2c3e50;">💳 Método de pago</h5>
+                    <hr />
+                    <div class="form-group">
+                        <select name="metodoPago" class="form-control" required>
+                            <option value="">-- Seleccionar --</option>
+                            <option value="Tarjeta de crédito">💳 Tarjeta de crédito</option>
+                            <option value="Tarjeta de débito">💳 Tarjeta de débito</option>
+                            <option value="SINPE Móvil">📱 SINPE Móvil</option>
+                            <option value="Efectivo contra entrega">💵 Efectivo contra entrega</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-block" style="font-weight:700;padding:1rem;">
+                    ✅ Confirmar Compra
+                </button>
+            }
+        </div>
+
+        <div class="col-md-5">
+            <div class="card shadow-sm p-4" style="border-radius:12px;">
+                <h5 style="font-weight:700;color:#2c3e50;">📋 Tu pedido</h5>
+                <hr />
+                @foreach (var item in items)
+                {
+                    <div class="d-flex justify-content-between mb-2" style="font-size:.92rem;">
+                        <span>@item.Nombre <span class="text-muted">× @item.Cantidad</span></span>
+                        <span style="font-weight:600;">₡@item.Subtotal.ToString("N2")</span>
+                    </div>
+                }
+                <hr />
+                <div class="d-flex justify-content-between" style="font-size:1.2rem;font-weight:800;color:#27ae60;">
+                    <span>Total</span>
+                    <span>₡@ViewBag.Total.ToString("N2")</span>
+                </div>
+                <p class="text-center mt-3" style="font-size:.82rem;color:#aaa;">🔒 Compra segura</p>
+            </div>
+        </div>
+    </div>
+</div>
